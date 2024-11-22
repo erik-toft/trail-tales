@@ -14,7 +14,7 @@ export default function MyMap({ position, zoom }: MapProps) {
         center={position}
         zoom={zoom}
         scrollWheelZoom={true}
-        style={{ height: "400px" }}
+        style={{ height: "400px", border: "solid, white, 1px" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
