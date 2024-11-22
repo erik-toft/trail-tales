@@ -1,0 +1,27 @@
+/* components/Footer.module.css */
+.footer {
+  display: flex;
+  justify-content: space-between; /* Dela upp innehållet */
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+.left {
+  font-size: 14px;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.contactLink {
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.contactLink:hover {
+  color: #ccc;
+}

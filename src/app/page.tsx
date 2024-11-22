@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Nav from "@/app/components/Nav";
 import dynamic from "next/dynamic";
+import Footer from "./components/Footer";
 
 export default function HomePage() {
   const Map = useMemo(
@@ -23,19 +25,20 @@ export default function HomePage() {
 
   return (
     <div>
+      <Nav />
       <h1>Welcome to TrailTales</h1>
       <div
         ref={mapRef}
         style={{
           position: "relative",
-          height: "500px",
+          height: "400px",
           backgroundColor: !isMapReady ? "#f0f0f0" : "transparent", // Placeholder medan kartan laddas
         }}
       >
         {isMapReady && <Map position={[51.505, -0.09]} zoom={13} />}
       </div>
 
-      <h1>FOOT</h1>
+      <Footer />
     </div>
   );
 }
