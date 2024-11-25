@@ -14,11 +14,15 @@ export default function MyMap({ position, zoom }: MapProps) {
         center={position}
         zoom={zoom}
         scrollWheelZoom={true}
-        style={{ height: "400px", border: "solid, white, 1px" }}
+        // worldCopyJump={false}
+        style={{ height: "100%", width: "100%" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}"
+          // noWrap={true}
+          minZoom={1}
+          maxZoom={19}
         />
         <Marker position={position} icon={customMarker}>
           <Popup>
