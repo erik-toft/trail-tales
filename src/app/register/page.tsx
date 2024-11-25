@@ -1,11 +1,10 @@
-// src/app/signup/page.tsx
 "use client";
 
 import { useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { SignupCredentials } from "@/types/User.types"; // Du kan skapa en typ för användarens data
+import { SignupCredentials } from "@/types/User.types";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/services/firebase"; // Din Firebase-konfiguration
+import { auth } from "@/services/firebase";
 import { useRouter } from "next/navigation";
 
 const SignupPage = () => {
@@ -25,10 +24,9 @@ const SignupPage = () => {
     setIsSubmitting(true);
 
     try {
-      // Firebase Auth: skapa användare
       await createUserWithEmailAndPassword(auth, data.email, data.password);
       alert("Account created successfully!");
-      router.push("/"); // Omregistrera användaren till startsidan
+      router.push("/");
     } catch (err) {
       console.error(err);
       alert("Failed to create account. Please try again.");
