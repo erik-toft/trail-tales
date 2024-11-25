@@ -1,7 +1,7 @@
 "use client";
 import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
-import { customMarker } from "@/app/components/CustomMarker";
+import { customMarker } from "@/components/CustomMarker";
 interface MapProps {
   position: LatLngExpression;
   zoom: number;

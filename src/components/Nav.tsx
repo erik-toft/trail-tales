@@ -1,6 +1,6 @@
 // components/Nav.tsx
 import Link from "next/link";
-import styles from "@/app/components/Nav.module.css";
+import styles from "@/components/Nav.module.css";
 
 const Nav = () => {
   return (

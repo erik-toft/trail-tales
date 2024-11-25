@@ -1,13 +1,11 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
-import Nav from "@/app/components/Nav";
 import dynamic from "next/dynamic";
-import Footer from "./components/Footer";
 
 export default function HomePage() {
   const Map = useMemo(
     () =>
-      dynamic(() => import("@/app/components/Map"), {
+      dynamic(() => import("@/components/Map"), {
         loading: () => <p>Loading map...</p>,
         ssr: false,
       }),
@@ -25,7 +23,6 @@ export default function HomePage() {
 
   return (
     <div>
-      <Nav />
       <h1>Welcome to TrailTales</h1>
       <div
         ref={mapRef}
@@ -37,8 +34,6 @@ export default function HomePage() {
       >
         {isMapReady && <Map position={[51.505, -0.09]} zoom={13} />}
       </div>
-
-      <Footer />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 // components/Footer.tsx
 import Link from "next/link";
-import styles from "@/app/components/Footer.module.css";
+import styles from "@/components/Footer.module.css";
 
 const Footer = () => {
   return (
