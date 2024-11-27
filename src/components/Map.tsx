@@ -1,5 +1,11 @@
 "use client";
-import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  TileLayer,
+  Popup,
+  ZoomControl,
+} from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import { customMarker } from "@/components/CustomMarker";
 interface MapProps {
@@ -14,9 +20,14 @@ export default function MyMap({ position, zoom }: MapProps) {
         center={position}
         zoom={zoom}
         scrollWheelZoom={true}
-        // worldCopyJump={false}
+        maxBounds={[
+          [-90, -180],
+          [90, 180],
+        ]}
+        zoomControl={false}
         style={{ height: "100%", width: "100%" }}
       >
+        <ZoomControl position="bottomright" />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}"

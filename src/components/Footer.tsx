@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.left}>
-        <p>Trail Tales &copy; 2024</p>
+        <p>&copy; 2024 Trail Tales</p>
       </div>
 
       <div className={styles.right}>

@@ -1,8 +1,7 @@
+// services/firebase.ts
 import { initializeApp } from "firebase/app";
-import "firebase/auth";
-import { getAuth } from "firebase/auth";
-import "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth"; // Importera endast den nya auth-modulen
+import { getFirestore } from "firebase/firestore"; // Importera Firestore
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,6 +13,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 

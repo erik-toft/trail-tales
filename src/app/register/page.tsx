@@ -6,8 +6,9 @@ import { SignupCredentials } from "@/types/User.types";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/services/firebase";
 import { useRouter } from "next/navigation";
+import styles from "@/app/styles/Form.module.css";
 
-const SignupPage = () => {
+const RegisterPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
@@ -37,10 +38,10 @@ const SignupPage = () => {
 
   return (
     <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit(onSignup)}>
+      <h1 className={styles.header}>Register</h1>
+      <form onSubmit={handleSubmit(onSignup)} className={styles.form}>
         {/* Email */}
-        <div>
+        <div className={styles.formItem}>
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -51,7 +52,7 @@ const SignupPage = () => {
         </div>
 
         {/* Password */}
-        <div>
+        <div className={styles.formItem}>
           <label htmlFor="password">Password</label>
           <input
             id="password"
@@ -68,7 +69,7 @@ const SignupPage = () => {
         </div>
 
         {/* Confirm Password */}
-        <div>
+        <div className={styles.formItem}>
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             id="confirmPassword"
@@ -83,15 +84,23 @@ const SignupPage = () => {
         </div>
 
         <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Creating Account..." : "Sign Up"}
+          {isSubmitting ? "Creating Account..." : "Register"}
         </button>
+        <p style={{ textAlign: "center", marginTop: "1.5rem" }}>
+          ----- OR -----
+        </p>
+        <div
+          style={{
+            textAlign: "center",
+            marginTop: "0.5rem",
+            border: "1px solid green",
+          }}
+        >
+          <a href="/login">Log In</a>
+        </div>
       </form>
-
-      <p>
-        Already have an account? <a href="/login">Log In</a>
-      </p>
     </div>
   );
 };
 
-export default SignupPage;
+export default RegisterPage;

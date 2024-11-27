@@ -1,8 +1,14 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const { currentUser } = useAuth();
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
   const Map = useMemo(
     () =>
       dynamic(() => import("@/components/Map"), {
@@ -16,10 +22,20 @@ export default function HomePage() {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    if (mapRef.current) {
-      setIsMapReady(true);
-    }
+    setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      if (!currentUser) {
+        router.push("/login");
+      } else {
+        if (mapRef.current) {
+          setIsMapReady(true);
+        }
+      }
+    }
+  }, [currentUser, isClient, router]);
 
   return (
     <div>
