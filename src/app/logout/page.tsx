@@ -13,7 +13,7 @@ const LogoutPage = () => {
       try {
         await auth.signOut();
         await new Promise((resolve) => setTimeout(resolve, 1500));
-        router.push("/login");
+        router.push("/welcome");
       } catch (err) {
         console.error("Logout failed", err);
       }

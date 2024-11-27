@@ -1,4 +1,3 @@
-// components/Nav.tsx
 import Link from "next/link";
 import styles from "@/components/Nav.module.css";
 
@@ -15,11 +14,8 @@ const Nav = () => {
         <Link href="/about" className={styles.navLink}>
           About
         </Link>
-        <Link href="/login" className={styles.navLink}>
-          Login
-        </Link>
-        <Link href="/register" className={styles.navLink}>
-          Register
+        <Link href="/help" className={styles.navLink}>
+          Help
         </Link>
       </div>
     </nav>

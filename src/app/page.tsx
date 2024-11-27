@@ -28,7 +28,7 @@ export default function HomePage() {
   useEffect(() => {
     if (isClient) {
       if (!currentUser) {
-        router.push("/login");
+        router.push("/welcome");
       } else {
         if (mapRef.current) {
           setIsMapReady(true);
