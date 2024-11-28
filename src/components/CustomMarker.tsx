@@ -1,5 +1,3 @@
-// "use client";
-
 import L from "leaflet";
 
 export const customMarker = L.icon({

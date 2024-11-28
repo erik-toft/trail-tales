@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import Link from "next/link";
 import styles from "@/components/Footer.module.css";
 

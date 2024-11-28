@@ -8,6 +8,7 @@ import {
 } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import { customMarker } from "@/components/CustomMarker";
+import styles from "@/components/Map.module.css";
 interface MapProps {
   position: LatLngExpression;
   zoom: number;
@@ -17,6 +18,7 @@ export default function MyMap({ position, zoom }: MapProps) {
   return (
     <>
       <MapContainer
+        className={styles.mapContainer}
         center={position}
         zoom={zoom}
         scrollWheelZoom={true}
@@ -29,9 +31,7 @@ export default function MyMap({ position, zoom }: MapProps) {
       >
         <ZoomControl position="bottomright" />
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}"
-          // noWrap={true}
           minZoom={1}
           maxZoom={19}
         />
