@@ -1,4 +1,5 @@
 "use client";
+import { createRef, useRef, useState } from "react";
 import {
   MapContainer,
   Marker,
@@ -9,14 +10,23 @@ import {
 import { LatLngExpression } from "leaflet";
 import { customMarker } from "@/components/CustomMarker";
 import styles from "@/components/Map.module.css";
+import DashboardButton from "@/components/Dashboard";
+import AddPinHandler from "@/components/AddPinHandler";
+
 interface MapProps {
   position: LatLngExpression;
   zoom: number;
 }
 
-export default function MyMap({ position, zoom }: MapProps) {
+const Map = ({ position, zoom }: MapProps) => {
+  const [pins, setPins] = useState<{ lat: number; lng: number }[]>([]);
+  const [isAddingPin, setIsAddingPin] = useState(false);
+
+  console.log(isAddingPin);
+
   return (
     <>
+      <DashboardButton setIsAddingPin={setIsAddingPin} />
       <MapContainer
         className={styles.mapContainer}
         center={position}
@@ -29,18 +39,27 @@ export default function MyMap({ position, zoom }: MapProps) {
         zoomControl={false}
         style={{ height: "100%", width: "100%" }}
       >
+        <AddPinHandler
+          isAddingPin={isAddingPin}
+          setIsAddingPin={setIsAddingPin}
+        />
+
         <ZoomControl position="bottomright" />
         <TileLayer
           url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}"
           minZoom={1}
           maxZoom={19}
         />
-        <Marker position={position} icon={customMarker}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        {pins.map((pin, index) => (
+          <Marker key={index} position={[pin.lat, pin.lng]} icon={customMarker}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </>
   );
-}
+};
+
+export default Map;

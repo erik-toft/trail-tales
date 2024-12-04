@@ -1,6 +1,6 @@
 .dashboardButtonContainer {
   position: absolute;
-  top: 5px;
+  top: -43px;
   right: 25%;
   left: 25%;
   z-index: 1000;
@@ -23,7 +23,7 @@
 
 .fadeIn {
   opacity: 0;
-  animation: fadeIn 1s forwards;
+  animation: fadeIn 2s forwards;
 }
 
 @keyframes fadeIn {
@@ -54,4 +54,5 @@
   text-decoration: none;
   display: block;
   margin: 20px 0;
+  cursor: pointer;
 }

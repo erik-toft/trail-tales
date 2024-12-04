@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "@/app/globals.css";
 import Footer from "@/components/Footer";
 import { AuthContextProvider } from "@/contexts/AuthContextProvider";
-import DashboardButton from "@/components/DashboardButton";
 import Nav from "@/components/Nav";
 
 const geistSans = localFont({
@@ -31,10 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Nav />
-        <AuthContextProvider>
-          <DashboardButton />
-          {children}
-        </AuthContextProvider>
+        <AuthContextProvider>{children}</AuthContextProvider>
         <Footer />
       </body>
     </html>
