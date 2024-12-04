@@ -1,5 +1,5 @@
 "use client";
-import { createRef, useRef, useState } from "react";
+import { useState } from "react";
 import {
   MapContainer,
   Marker,
@@ -19,7 +19,7 @@ interface MapProps {
 }
 
 const Map = ({ position, zoom }: MapProps) => {
-  const [pins, setPins] = useState<{ lat: number; lng: number }[]>([]);
+  const [pins] = useState<{ lat: number; lng: number }[]>([]);
   const [isAddingPin, setIsAddingPin] = useState(false);
 
   console.log(isAddingPin);

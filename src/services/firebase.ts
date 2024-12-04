@@ -1,7 +1,12 @@
-// services/firebase.ts
+import { Pin } from "@/types/Pin.types";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; // Importera endast den nya auth-modulen
-import { getFirestore } from "firebase/firestore"; // Importera Firestore
+import { getAuth } from "firebase/auth";
+import {
+  collection,
+  CollectionReference,
+  DocumentData,
+  getFirestore,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -16,5 +21,11 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+const createCollection = <T = DocumentData>(collectionName: string) => {
+  return collection(db, collectionName) as CollectionReference<T>;
+};
+
+export const pinCol = createCollection<Pin>("pin");
 
 export default app;
