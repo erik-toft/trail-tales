@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Pin } from "@/types/Pin.types";
 import useUploadPin from "@/hooks/useUploadPin";
 import styles from "@/components/PinForm.module.css";
+import UploadImage from "./UploadImage";
 
 type PinFormProps = {
   lat: number;
@@ -24,13 +25,26 @@ const PinForm: React.FC<PinFormProps> = ({
   } = useForm<Pin>();
   const { uploadPin, isUploading, error } = useUploadPin();
   const [menuOpen] = useState(pinFormOpen);
+  const [uploadedImages, setUploadedImages] = useState<
+    { name: string; id: string; size: number }[]
+  >([]);
+
+  const handleImageUpload = (
+    images: { name: string; id: string; size: number }[]
+  ) => {
+    setUploadedImages(images);
+  };
+
   const handleFormSubmit: SubmitHandler<Pin> = async (data) => {
     try {
+      console.log(uploadedImages);
       await uploadPin({
         ...data,
         lat,
         lng,
+        images: uploadedImages,
       });
+
       closeSidebar();
     } catch (err) {
       console.error("Failed to upload pin:", err);
@@ -61,6 +75,8 @@ const PinForm: React.FC<PinFormProps> = ({
         />
         {errors.description && <p>{errors.description.message}</p>}
       </div>
+
+      <UploadImage onImageUpload={handleImageUpload} />
 
       <button type="submit" disabled={isUploading}>
         {isUploading ? "Saving..." : "Save Pin"}

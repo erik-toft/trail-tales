@@ -7,6 +7,7 @@ import AddPinHandler from "@/components/AddPinHandler";
 import PinForm from "./PinForm";
 import usePins from "@/hooks/usePins";
 import { customMarker } from "./CustomMarker";
+import useAuth from "@/hooks/useAuth";
 
 interface MapProps {
   position: LatLngExpression;
@@ -20,7 +21,13 @@ const Map = ({ position, zoom }: MapProps) => {
     lng: number;
   } | null>(null);
   const [pinFormOpen, setPinFormOpen] = useState(false);
-  const { data: pins, loading, error } = usePins();
+  const { currentUser } = useAuth();
+
+  const {
+    data: pins,
+    loading,
+    error,
+  } = usePins(currentUser ? currentUser.uid : "");
 
   const handlePinAdd = (lat: number, lng: number) => {
     setPinCoords({ lat, lng });

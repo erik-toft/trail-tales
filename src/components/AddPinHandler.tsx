@@ -15,13 +15,13 @@ const AddPinHandler: React.FC<AddPinHandlerProps> = ({
   onPinAdd,
 }) => {
   const map = useMap();
-  const [activeMarker, setActiveMarker] = useState<L.Marker | null>(null); // För att hålla reda på aktuell markör
+  const [activeMarker, setActiveMarker] = useState<L.Marker | null>(null);
 
   const handleMapClick = useCallback(
     (e: LeafletMouseEvent) => {
       const { lat, lng } = e.latlng;
       const marker = L.marker([lat, lng], { icon: customMarker }).addTo(map);
-      setActiveMarker(marker); // Spara markören i state
+      setActiveMarker(marker);
 
       onPinAdd(lat, lng);
       setIsAddingPin(false);
@@ -36,7 +36,6 @@ const AddPinHandler: React.FC<AddPinHandlerProps> = ({
     return () => {
       map.off("click", handleMapClick);
 
-      // Om en markör är skapad och användaren avbryter, ta bort markören
       if (activeMarker) {
         activeMarker.remove();
         setActiveMarker(null);

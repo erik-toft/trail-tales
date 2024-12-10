@@ -1,4 +1,4 @@
-import { Pin } from "@/types/Pin.types";
+import { Image, Pin } from "@/types/Pin.types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {
@@ -7,6 +7,7 @@ import {
   DocumentData,
   getFirestore,
 } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -21,11 +22,13 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(db, collectionName) as CollectionReference<T>;
 };
 
 export const pinCol = createCollection<Pin>("pins");
+export const imageCol = createCollection<Image>("images");
 
 export default app;
