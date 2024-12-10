@@ -26,6 +26,6 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(db, collectionName) as CollectionReference<T>;
 };
 
-export const pinCol = createCollection<Pin>("pin");
+export const pinCol = createCollection<Pin>("pins");
 
 export default app;

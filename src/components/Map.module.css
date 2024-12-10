@@ -10,4 +10,6 @@
 .mapContainer {
   animation: fadeIn 1s ease-in-out forwards;
   opacity: 0;
+  height: 100%;
+  width: 100%;
 }

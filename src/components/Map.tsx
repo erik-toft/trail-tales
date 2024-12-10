@@ -1,17 +1,12 @@
-"use client";
 import { useState } from "react";
-import {
-  MapContainer,
-  Marker,
-  TileLayer,
-  Popup,
-  ZoomControl,
-} from "react-leaflet";
+import { MapContainer, Marker, TileLayer, ZoomControl } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
-import { customMarker } from "@/components/CustomMarker";
 import styles from "@/components/Map.module.css";
-import DashboardButton from "@/components/Dashboard";
+import Dashboard from "@/components/Dashboard";
 import AddPinHandler from "@/components/AddPinHandler";
+import PinForm from "./PinForm";
+import usePins from "@/hooks/usePins";
+import { customMarker } from "./CustomMarker";
 
 interface MapProps {
   position: LatLngExpression;
@@ -19,14 +14,36 @@ interface MapProps {
 }
 
 const Map = ({ position, zoom }: MapProps) => {
-  const [pins] = useState<{ lat: number; lng: number }[]>([]);
   const [isAddingPin, setIsAddingPin] = useState(false);
+  const [pinCoords, setPinCoords] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
+  const [pinFormOpen, setPinFormOpen] = useState(false);
+  const { data: pins, loading, error } = usePins();
 
-  console.log(isAddingPin);
+  const handlePinAdd = (lat: number, lng: number) => {
+    setPinCoords({ lat, lng });
+    setPinFormOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setPinCoords(null);
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  console.log(pins);
 
   return (
     <>
-      <DashboardButton setIsAddingPin={setIsAddingPin} />
+      <Dashboard setIsAddingPin={setIsAddingPin} />
       <MapContainer
         className={styles.mapContainer}
         center={position}
@@ -37,12 +54,28 @@ const Map = ({ position, zoom }: MapProps) => {
           [90, 180],
         ]}
         zoomControl={false}
-        style={{ height: "100%", width: "100%" }}
       >
         <AddPinHandler
           isAddingPin={isAddingPin}
           setIsAddingPin={setIsAddingPin}
+          onPinAdd={handlePinAdd}
         />
+        {pinCoords && (
+          <PinForm
+            lat={pinCoords.lat}
+            lng={pinCoords.lng}
+            closeSidebar={closeSidebar}
+            pinFormOpen={pinFormOpen}
+          />
+        )}
+        {pins &&
+          pins.map((pin) => (
+            <Marker
+              key={pin._id}
+              position={{ lat: pin.lat, lng: pin.lng }}
+              icon={customMarker}
+            />
+          ))}
 
         <ZoomControl position="bottomright" />
         <TileLayer
@@ -50,13 +83,6 @@ const Map = ({ position, zoom }: MapProps) => {
           minZoom={1}
           maxZoom={19}
         />
-        {pins.map((pin, index) => (
-          <Marker key={index} position={[pin.lat, pin.lng]} icon={customMarker}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        ))}
       </MapContainer>
     </>
   );

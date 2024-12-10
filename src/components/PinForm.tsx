@@ -1,69 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Pin } from "@/types/Pin.types";
+import useUploadPin from "@/hooks/useUploadPin";
+import styles from "@/components/PinForm.module.css";
 
 type PinFormProps = {
   lat: number;
   lng: number;
-  onSubmit: (data: Pin) => void;
-  onClose: () => void;
+  closeSidebar: () => void;
+  pinFormOpen: boolean;
 };
 
-const PinForm: React.FC<PinFormProps> = ({ lat, lng, onSubmit, onClose }) => {
+const PinForm: React.FC<PinFormProps> = ({
+  lat,
+  lng,
+  closeSidebar,
+  pinFormOpen,
+}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Pin>();
-
-  const handleFormSubmit: SubmitHandler<Pin> = (data) => {
-    onSubmit({
-      ...data,
-      lat,
-      lng,
-    });
+  const { uploadPin, isUploading, error } = useUploadPin();
+  const [menuOpen] = useState(pinFormOpen);
+  const handleFormSubmit: SubmitHandler<Pin> = async (data) => {
+    try {
+      await uploadPin({
+        ...data,
+        lat,
+        lng,
+      });
+      closeSidebar();
+    } catch (err) {
+      console.error("Failed to upload pin:", err);
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(handleFormSubmit)}>
-        <div>
-          <label>Title:</label>
-          <input
-            type="text"
-            {...register("title", { required: "Title is required" })}
-          />
-          {errors.title && <p className="error">{errors.title.message}</p>}
-        </div>
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      style={{ padding: "20px" }}
+      className={`${styles.menu} ${menuOpen ? styles.open : ""}`}
+    >
+      <div>
+        <label>Title:</label>
+        <input
+          type="text"
+          {...register("title", { required: "Title is required" })}
+        />
+        {errors.title && <p>{errors.title.message}</p>}
+      </div>
 
-        <div>
-          <label>Description:</label>
-          <textarea
-            {...register("description", {
-              required: "Description is required",
-            })}
-          />
-          {errors.description && (
-            <p className="error">{errors.description.message}</p>
-          )}
-        </div>
+      <div>
+        <label>Description:</label>
+        <textarea
+          {...register("description", {
+            required: "Description is required",
+          })}
+        />
+        {errors.description && <p>{errors.description.message}</p>}
+      </div>
 
-        <div>
-          <label>Latitude:</label>
-          <input type="number" value={lat} disabled readOnly />
-        </div>
-
-        <div>
-          <label>Longitude:</label>
-          <input type="number" value={lng} disabled readOnly />
-        </div>
-
-        <button type="submit">Save Pin</button>
-        <button type="button" onClick={onClose}>
-          Close
-        </button>
-      </form>
-    </div>
+      <button type="submit" disabled={isUploading}>
+        {isUploading ? "Saving..." : "Save Pin"}
+      </button>
+      <button type="button" onClick={closeSidebar}>
+        Cancel
+      </button>
+      {error && <p>{error}</p>}
+    </form>
   );
 };
 
