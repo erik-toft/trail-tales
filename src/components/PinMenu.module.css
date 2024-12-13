@@ -1,0 +1,23 @@
+/* PinMenu.module.css */
+.pinMenu {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.pinButton {
+  border: none;
+
+  color: white;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.pinButton:hover {
+  background: #0056b3;
+}

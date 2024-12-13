@@ -1,10 +1,10 @@
 export type Pin = {
-  _id: string;
+  _id?: string;
   title: string;
-  description: string;
+  description?: string;
   lat: number;
   lng: number;
-  images: { name: string; id: string; size: number }[];
+  images?: { name: string; id: string; size: number }[];
 };
 
 export type Image = {

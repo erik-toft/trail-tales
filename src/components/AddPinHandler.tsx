@@ -7,12 +7,14 @@ type AddPinHandlerProps = {
   isAddingPin: boolean;
   setIsAddingPin: (value: boolean) => void;
   onPinAdd: (lat: number, lng: number) => void;
+  searchedPinCoords: { lat: number; lng: number } | null;
 };
 
 const AddPinHandler: React.FC<AddPinHandlerProps> = ({
   isAddingPin,
   setIsAddingPin,
   onPinAdd,
+  searchedPinCoords,
 }) => {
   const map = useMap();
   const [activeMarker, setActiveMarker] = useState<L.Marker | null>(null);
@@ -28,7 +30,6 @@ const AddPinHandler: React.FC<AddPinHandlerProps> = ({
     },
     [map, onPinAdd, setIsAddingPin]
   );
-
   useEffect(() => {
     if (isAddingPin) {
       map.on("click", handleMapClick);
@@ -42,6 +43,20 @@ const AddPinHandler: React.FC<AddPinHandlerProps> = ({
       }
     };
   }, [map, isAddingPin, handleMapClick, activeMarker]);
+
+  useEffect(() => {
+    if (searchedPinCoords) {
+      const marker = L.marker([searchedPinCoords.lat, searchedPinCoords.lng], {
+        icon: customMarker,
+      }).addTo(map);
+      setActiveMarker(marker);
+
+      return () => {
+        marker.remove();
+        setActiveMarker(null);
+      };
+    }
+  }, [searchedPinCoords, map]);
 
   return null;
 };

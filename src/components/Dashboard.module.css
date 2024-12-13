@@ -34,15 +34,14 @@
 
 .menu {
   position: fixed;
-  top: 48px;
-  left: -200px;
+  top: 47px;
+  left: -300px;
   width: 200px;
   height: 400px;
-  background-color: green;
+  background-color: transparent;
   color: white;
   padding: 20px;
   transition: left 0.3s ease;
-  z-index: 999;
 }
 
 .menu.open {
@@ -55,4 +54,14 @@
   display: block;
   margin: 20px 0;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    top: 47px;
+    left: 1px;
+  }
+  .dashboardButton {
+    display: none;
+  }
 }

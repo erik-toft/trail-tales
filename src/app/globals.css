@@ -40,6 +40,16 @@ a {
   background-color: unset;
 }
 
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-popup-content {
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.leaflet-popup-close-button {
+  display: none;
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
