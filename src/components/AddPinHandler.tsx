@@ -1,3 +1,5 @@
+"use client";
+
 import { useMap } from "react-leaflet";
 import L, { LeafletMouseEvent } from "leaflet";
 import React, { useEffect, useCallback, useState } from "react";

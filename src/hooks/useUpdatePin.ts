@@ -1,3 +1,4 @@
+"use client";
 import { doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "@/services/firebase"; // Din Firestore-instans

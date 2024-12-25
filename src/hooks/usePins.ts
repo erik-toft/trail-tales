@@ -1,3 +1,4 @@
+"use client";
 import { pinCol } from "@/services/firebase"; // Din Firestore-samling
 import { Pin } from "@/types/Pin.types"; // Importera Pin-typen
 import useStreamCollection from "@/hooks/useStreamCollection";
