@@ -13,6 +13,7 @@ const nextConfig = {
     };
     return config;
   },
+  output: "export", // Lägg till denna rad för att stödja statisk export
 };
 
 export default nextConfig;
