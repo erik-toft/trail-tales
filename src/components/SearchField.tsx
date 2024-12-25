@@ -46,7 +46,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ onPlaceSelected }) => {
       <input
         ref={inputRef}
         type="text"
-        placeholder="Search for a city"
+        placeholder="Search for a city..."
         value={inputValue}
         onChange={handleInputChange}
         className={styles.search}
