@@ -1,3 +1,6 @@
 .search {
+  flex-grow: 1; /* Gör så att sökfältet tar upp allt ledigt utrymme */
+  min-width: 0px; /* Sätt en minimal bredd på sökfältet */
+  max-width: 150px; /* Begränsa bredden på sökfältet för att förhindra att det blir för stort */
   padding: 0.2rem;
 }

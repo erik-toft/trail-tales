@@ -28,7 +28,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 
   return (
     <div className={styles.dashboardButtonContainer}>
-      <div className={`${styles.menu} ${styles.open}`}>
+      <div className={styles.menu}>
         <button
           onClick={handleAddPinClick}
           className={!isAddingPin ? styles.add : styles.pulse}
