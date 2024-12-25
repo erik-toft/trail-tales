@@ -95,7 +95,7 @@ const Map = ({ position, zoom }: MapProps) => {
         className={styles.mapContainer}
         center={position}
         zoom={zoom}
-        scrollWheelZoom={true}
+        // scrollWheelZoom={true}
         maxBounds={[
           [-90, -180],
           [90, 180],
