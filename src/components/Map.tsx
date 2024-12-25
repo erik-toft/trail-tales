@@ -97,6 +97,7 @@ const Map = ({ position, zoom }: MapProps) => {
         zoom={zoom}
         scrollWheelZoom={false}
         touchZoom={false}
+        dragging={false}
         maxBounds={[
           [-90, -180],
           [90, 180],
