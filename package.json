@@ -2,11 +2,14 @@
   "name": "trail-tales",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://erik-toft.github.io/trail-tales",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.9.2",
@@ -14,6 +17,7 @@
     "@vis.gl/react-google-maps": "^1.4.2",
     "axios": "^1.7.9",
     "firebase": "^11.0.2",
+    "gh-pages": "^6.2.0",
     "leaflet": "^1.9.4",
     "next": "14.2.18",
     "react": "^18",
