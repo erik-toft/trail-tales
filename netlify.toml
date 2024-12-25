@@ -1,6 +1,11 @@
 [build]
-  command = "npm run build"  # Det här bygger din Next.js-app
-  publish = ".next"  # Publikationen ska vara din .next-mapp (där din byggda app finns)
+  command = "npm run build"
+  publish = ".next"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"  # Lägg till Netlify-pluginet för Next.js för att hantera SSR
+[build.environment]
+  CI = ""
+  
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
