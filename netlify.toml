@@ -1,34 +1,8 @@
-# Netlify Configuration File
-
 [build]
-  # Kommando för att bygga din Next.js-applikation
   command = "npm run build"
-  # Mappen där Next.js bygger sina filer
   publish = ".next"
-  # Specificera miljövariabler om de behövs under byggprocessen
- 
-
-# Använd Netlify's plugin för Next.js
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-# Redirects för Next.js-appar
+  
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-# (Valfritt) Dev-inställningar
-[dev]
-  # Kommando för att starta utvecklingsservern
-  command = "npm run dev"
-  # Porten för utvecklingsservern
-  port = 3000
-  # Publiceringsmappen för _redirect-fil
-  publish = "public"
-
-# Cachinginställningar för att snabba upp byggningar
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
