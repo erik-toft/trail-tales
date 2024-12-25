@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "@/app/globals.css";
 import Footer from "@/components/Footer";
 import { AuthContextProvider } from "@/contexts/AuthContextProvider";
