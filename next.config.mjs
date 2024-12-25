@@ -13,7 +13,9 @@ const nextConfig = {
     };
     return config;
   },
-  output: "export", // Lägg till denna rad för att stödja statisk export
+  output: "export", // Lägg till detta för att möjliggöra statisk export
+  distDir: "out", // Mappen för de statiska filerna
+  trailingSlash: true, // För att säkerställa att URL:erna slutar med '/'
 };
 
 export default nextConfig;
