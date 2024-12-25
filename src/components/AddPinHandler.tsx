@@ -27,6 +27,10 @@ const AddPinHandler: React.FC<AddPinHandlerProps> = ({
 
       onPinAdd(lat, lng);
       setIsAddingPin(false);
+      window.scrollTo({
+        top: document.body.scrollHeight, // Scrollar till botten av sidan
+        behavior: "smooth", // Lägger till smidig scroll
+      });
     },
     [map, onPinAdd, setIsAddingPin]
   );

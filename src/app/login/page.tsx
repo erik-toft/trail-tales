@@ -8,6 +8,8 @@ import { auth } from "@/services/firebase";
 import { useRouter } from "next/navigation";
 import { FirebaseError } from "firebase/app";
 import styles from "@/app/styles/Form.module.css";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 const LoginPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,7 +39,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1 className={styles.header}>Log In</h1>
       <form onSubmit={handleSubmit(onLogin)} className={styles.form}>
         <div className={styles.formItem}>
@@ -73,6 +75,11 @@ const LoginPage = () => {
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Logging in..." : "Log In"}
         </button>
+        <div style={{ marginTop: "2rem" }}>
+          <Link href="/">
+            <FaArrowLeft />
+          </Link>
+        </div>
       </form>
     </div>
   );

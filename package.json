@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.9.2",
     "@react-google-maps/api": "^2.20.3",
     "@vis.gl/react-google-maps": "^1.4.2",
     "axios": "^1.7.9",
@@ -20,7 +21,10 @@
     "react-dropzone": "^14.3.5",
     "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.53.2",
+    "react-icons": "^5.4.0",
     "react-leaflet": "^4.2.1",
+    "react-spinners": "^0.15.0",
+    "swiper": "^11.1.15",
     "uuid": "^11.0.3"
   },
   "devDependencies": {

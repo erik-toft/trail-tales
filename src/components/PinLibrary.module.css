@@ -1,0 +1,103 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #000000;
+  padding: 1.25rem;
+  width: 25rem;
+  height: 100vh;
+  position: relative;
+
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1001;
+}
+
+.editButton {
+  padding: 0.625rem 1.25rem;
+  /* font-size: 1rem; */
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  color: #fff;
+  cursor: pointer;
+  margin-block: 1.25rem;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.625rem;
+  right: 1rem;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 998;
+}
+.swiperCloseButton {
+  position: absolute;
+  top: 0.625rem;
+  right: 1rem;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 998;
+}
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+}
+/* .swiper img {
+  margin-top: 25%;
+} */
+.deleteButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.commentInput {
+  width: 100%;
+  min-height: 60px;
+  margin-inline: 1rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: none;
+  font-size: 12px;
+  resize: none;
+}
+
+.image {
+  max-width: calc(33.33% - 1rem);
+  min-width: calc(33.33% - 1rem);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.swiperImage {
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  .modalOverlay {
+    justify-content: end;
+  }
+}

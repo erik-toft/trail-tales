@@ -1,17 +1,17 @@
 export type Pin = {
-  _id?: string;
+  _id: string;
   title: string;
+  year?: number;
   description?: string;
   lat: number;
   lng: number;
-  images?: { name: string; id: string; size: number }[];
+  images?: Image[];
 };
 
 export type Image = {
+  id: string;
   name: string;
-  path: string;
   size: number;
-  type: string;
-  uid: string;
   url: string;
+  comment?: string;
 };

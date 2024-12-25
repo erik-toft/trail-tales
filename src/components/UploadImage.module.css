@@ -1,0 +1,23 @@
+.dropzone {
+  border: rgba(128, 128, 128, 0.5) solid;
+  background-color: rgba(128, 128, 128, 0.3);
+  cursor: pointer;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.dropzone > p {
+  padding: 1rem;
+
+  font-size: 1rem;
+}
+
+.imageList {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.removeButton {
+  margin-left: auto;
+}

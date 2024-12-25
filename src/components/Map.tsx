@@ -14,7 +14,9 @@ import PinForm from "./PinForm";
 import usePins from "@/hooks/usePins";
 import { customMarker } from "./CustomMarker";
 import useAuth from "@/hooks/useAuth";
-import PinMenu from "./PinMenu";
+import PinLibrary from "@/components/PinLibrary";
+import { Pin } from "@/types/Pin.types";
+import { ClockLoader } from "react-spinners";
 
 interface MapProps {
   position: LatLngExpression;
@@ -32,7 +34,9 @@ const Map = ({ position, zoom }: MapProps) => {
     lng: number;
   } | null>(null);
   const [pinFormOpen, setPinFormOpen] = useState(false);
+
   const { currentUser } = useAuth();
+  const [selectedPin, setSelectedPin] = useState<Pin | null>(null);
 
   const {
     data: pins,
@@ -41,7 +45,6 @@ const Map = ({ position, zoom }: MapProps) => {
   } = usePins(currentUser ? currentUser.uid : "");
 
   const handlePinAdd = (lat: number, lng: number) => {
-    console.log("pin added:", lat, lng);
     setPinCoords({ lat, lng });
     setPinFormOpen(true);
   };
@@ -49,37 +52,43 @@ const Map = ({ position, zoom }: MapProps) => {
   const handlePlaceSelected = (lat: number, lng: number) => {
     setSearchedPinCoords({ lat, lng });
     handlePinAdd(lat, lng);
+    setIsAddingPin(false);
   };
 
   const closeSidebar = () => {
     setPinCoords(null);
     setSearchedPinCoords(null);
     setPinFormOpen(false);
+    setSelectedPin(null);
+  };
+
+  const handleMarkerClick = (pin: Pin) => {
+    setSelectedPin(null);
+    setPinFormOpen(false);
+
+    setSelectedPin(pin);
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="spinner">
+        <ClockLoader color="yellow" />
+      </div>
+    );
   }
 
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  console.log(searchedPinCoords);
 
   return (
     <>
       <Dashboard
         onPlaceSelected={handlePlaceSelected}
         setIsAddingPin={setIsAddingPin}
+        isAddingPin={isAddingPin}
       />
-      {pinCoords && pinFormOpen && (
-        <PinForm
-          lat={pinCoords.lat}
-          lng={pinCoords.lng}
-          closeSidebar={closeSidebar}
-          pinFormOpen={pinFormOpen}
-        />
-      )}
+
       <MapContainer
         className={styles.mapContainer}
         center={position}
@@ -106,25 +115,11 @@ const Map = ({ position, zoom }: MapProps) => {
               key={pin._id}
               position={{ lat: pin.lat, lng: pin.lng }}
               icon={customMarker}
+              eventHandlers={{
+                click: () => handleMarkerClick(pin),
+              }}
             >
-              <Popup>
-                <PinMenu
-                  buttons={[
-                    {
-                      label: "Edit",
-                      onClick: () => console.log("edit pin: ", pin._id),
-                    },
-                    {
-                      label: "Delete",
-                      onClick: () => console.log("delete pin:", pin._id),
-                    },
-                    {
-                      label: "Details",
-                      onClick: () => console.log("pin details:", pin._id),
-                    },
-                  ]}
-                />
-              </Popup>
+              <Popup></Popup>
             </Marker>
           ))}
         <ZoomControl position="bottomright" />
@@ -134,6 +129,17 @@ const Map = ({ position, zoom }: MapProps) => {
           maxZoom={19}
         />
       </MapContainer>
+      {pinCoords && pinFormOpen && (
+        <PinForm
+          lat={pinCoords.lat}
+          lng={pinCoords.lng}
+          closeSidebar={closeSidebar}
+          pinFormOpen={pinFormOpen}
+        />
+      )}
+      {selectedPin && (
+        <PinLibrary closeSidebar={closeSidebar} pin={selectedPin} />
+      )}
     </>
   );
 };

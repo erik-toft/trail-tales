@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "@/services/firebase";
+import { ClockLoader } from "react-spinners";
 
 interface AuthContextType {
   currentUser: User | null;
@@ -43,7 +44,9 @@ const AuthContextProvider = ({ children }: PropsWithChildren) => {
   return (
     <AuthContext.Provider value={{ currentUser, login, logout }}>
       {loading ? (
-        <div style={{ height: "400px" }}>Loading...</div>
+        <div className="spinner">
+          <ClockLoader color="green" />
+        </div>
       ) : (
         <>{children}</>
       )}

@@ -1,67 +1,48 @@
-.dashboardButtonContainer {
-  position: absolute;
-  top: -43px;
-  right: 25%;
-  left: 25%;
-  z-index: 1000;
-  text-align: center;
+.menu {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 1rem;
 }
 
-.dashboardButton {
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+.menu button {
+  background-color: transparent;
+  border: 1px solid #909090;
+  padding-inline: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
-.dashboardButton:hover {
-  background-color: #005bb5;
+.menu button:hover {
+  background-color: #909090;
+  color: black;
 }
 
-.fadeIn {
-  opacity: 0;
-  animation: fadeIn 2s forwards;
+.logout {
+  margin-left: auto;
+}
+.logout button {
+  border: none;
 }
 
-@keyframes fadeIn {
-  to {
+.add {
+  margin-left: 0.5rem;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
     opacity: 1;
   }
 }
 
-.menu {
-  position: fixed;
-  top: 47px;
-  left: -300px;
-  width: 200px;
-  height: 400px;
-  background-color: transparent;
-  color: white;
-  padding: 20px;
-  transition: left 0.3s ease;
-}
-
-.menu.open {
-  left: 0;
-}
-
-.menu button {
-  color: white;
-  text-decoration: none;
-  display: block;
-  margin: 20px 0;
-  cursor: pointer;
-}
-
-@media (min-width: 768px) {
-  .menu {
-    top: 47px;
-    left: 1px;
-  }
-  .dashboardButton {
-    display: none;
-  }
+.pulse {
+  animation: pulse 1s ease-in-out infinite;
+  margin-left: 0.5rem;
+  background-color: #f0f0f0;
 }

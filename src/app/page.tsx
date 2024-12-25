@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import { ClockLoader } from "react-spinners";
 
 export default function HomePage() {
   const { currentUser } = useAuth();
@@ -12,7 +13,11 @@ export default function HomePage() {
   const Map = useMemo(
     () =>
       dynamic(() => import("@/components/Map"), {
-        loading: () => <p>Loading map...</p>,
+        loading: () => (
+          <div className={"spinner"}>
+            <ClockLoader color="blue" />
+          </div>
+        ),
         ssr: false,
       }),
     []
@@ -43,7 +48,6 @@ export default function HomePage() {
         ref={mapRef}
         style={{
           position: "relative",
-          height: "400px",
         }}
       >
         {isMapReady && <Map position={[30.505, -0.09]} zoom={1} />}

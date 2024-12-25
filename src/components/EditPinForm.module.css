@@ -5,11 +5,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Gör att overlay kommer ovanpå allt annat */
+  z-index: 1000;
 }
 
 /* Modal container */
@@ -20,7 +20,6 @@
 
   position: relative;
   height: 100vh;
-
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -31,13 +30,20 @@
 /* Close button style inside modal */
 .closeButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem;
+
   background-color: transparent;
   color: white;
   border: none;
-  font-size: 24px;
   cursor: pointer;
+  z-index: 998;
+}
+
+/* Style for label */
+.titleLabel,
+.descriptionLabel {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 /* Input and textarea styles */
@@ -79,6 +85,17 @@
 .yearLabel {
   margin-right: 1rem;
   margin-bottom: 1rem;
+}
+
+.lngLabel,
+.latLabel {
+  margin: 0.5rem;
+}
+.positionContainer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: 768px) {

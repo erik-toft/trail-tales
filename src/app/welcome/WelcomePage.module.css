@@ -5,13 +5,19 @@
   margin: 0 auto;
   padding: 1rem;
 }
-
+.header {
+  margin-top: 3rem;
+  font-size: 1.8rem;
+}
+.container {
+  height: 70vh;
+}
 .container button {
   padding: 0.8rem;
   margin-top: 1rem;
   width: 100%;
-  border: none;
-  background-color: #007bff;
+  border: 1px solid white;
+  background-color: transparent;
   color: white;
   border-radius: 4px;
   font-size: 1rem;

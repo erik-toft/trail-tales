@@ -1,20 +1,17 @@
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import useUploadImage from "../hooks/useUploadImage";
-import { v4 as uuidv4 } from "uuid";
-import { deleteObject, ref } from "firebase/storage";
-import { storage } from "@/services/firebase";
+import { Image } from "@/types/Pin.types";
+import styles from "@/components/UploadImage.module.css";
 
 const UploadImage = ({
   onImageUpload,
 }: {
-  onImageUpload: (images: { name: string; id: string; size: number }[]) => void;
+  onImageUpload: (images: Image[]) => void;
 }) => {
-  const { upload, progress, isUploading, isSuccess, isError, error } =
-    useUploadImage();
-  const [uploadedImages, setUploadedImages] = useState<
-    { name: string; id: string; size: number }[]
-  >([]);
+  const { upload, removeStorageOnly, status } = useUploadImage();
+  const [uploadedImages, setUploadedImages] = useState<Image[]>([]);
+  const [showAllImages, setShowAllImages] = useState(false); // State for toggling image view
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
@@ -23,22 +20,20 @@ const UploadImage = ({
         return;
       }
 
-      const newImagesMetadata = acceptedFiles.map((file) => {
-        const uniqueId = uuidv4();
-        return {
-          name: file.name,
-          id: uniqueId,
-          size: file.size,
-        };
-      });
-
-      const uploadPromises = acceptedFiles.map(async (file, index) => {
+      const uploadPromises = acceptedFiles.map(async (file) => {
         try {
-          await upload(file);
-          return newImagesMetadata[index];
+          const metadata = await upload(file);
+          if (metadata) {
+            return {
+              name: metadata.name,
+              id: metadata.id,
+              size: metadata.size,
+              url: metadata.url,
+            };
+          }
         } catch (err) {
           console.error("Error uploading image:", err);
-          return null;
+          return undefined;
         }
       });
 
@@ -46,7 +41,7 @@ const UploadImage = ({
         const uploadedFilesMetadata = await Promise.all(uploadPromises);
 
         const successfulUploads = uploadedFilesMetadata.filter(
-          (metadata) => metadata !== null
+          (metadata) => metadata !== undefined
         );
 
         setUploadedImages((prevImages) => [
@@ -70,10 +65,9 @@ const UploadImage = ({
     onDrop,
   });
 
-  const handleRemoveImage = async (imageId: string, imagePath: string) => {
+  const handleRemoveImage = async (imageId: string) => {
     try {
-      const imageRef = ref(storage, `images/${imagePath}`);
-      await deleteObject(imageRef);
+      await removeStorageOnly(imageId);
 
       const updatedImages = uploadedImages.filter(
         (image) => image.id !== imageId
@@ -82,26 +76,26 @@ const UploadImage = ({
       setUploadedImages(updatedImages);
       onImageUpload(updatedImages);
     } catch (error) {
-      console.error(error);
+      console.error("Error removing image:", error);
     }
+  };
+
+  const toggleImageView = () => {
+    setShowAllImages(!showAllImages); // Toggle the state to show all images or just 3
   };
 
   return (
     <>
-      <div {...getRootProps()}>
+      <div className={styles.dropzone} {...getRootProps()}>
         <input {...getInputProps()} />
-        <p>
-          {isDragActive
-            ? "Släpp bilden här!"
-            : "Dra och släpp en bild här eller klicka för att välja"}
-        </p>
+        <p>{isDragActive ? "Drop image here!" : "Add images"}</p>
       </div>
 
-      {progress !== null && (
+      {status.progress !== 0 && (
         <div>
           <div
             style={{
-              width: `${progress}%`,
+              width: `${status.progress}%`,
               height: "10px",
               backgroundColor: "#4caf50",
             }}
@@ -109,28 +103,40 @@ const UploadImage = ({
         </div>
       )}
 
-      {isError && <p style={{ color: "red" }}>😳 {error}</p>}
+      {status.error && <p style={{ color: "red" }}>😳 {status.error}</p>}
 
-      {isSuccess &&
-        uploadedImages.map((image) => (
-          <ul key={image.id}>
-            <li>
-              {image.name} {Math.round(image.size / 1024)} KB
-              <button
-                style={{
-                  display: "inline",
-                  borderRadius: "5px",
-                  marginLeft: "10px",
-                  background: "red",
-                }}
-                onClick={() => handleRemoveImage(image.id, image.name)}
-              >
-                X
-              </button>
-            </li>
-          </ul>
-        ))}
-      {isUploading && !isSuccess && !isError && <p>Laddar upp...</p>}
+      <div className={styles.imageContainer}>
+        {/* Only show first 3 images unless showAllImages is true */}
+        {uploadedImages
+          .slice(0, showAllImages ? uploadedImages.length : 3)
+          .map((image) => (
+            <ul key={image.id}>
+              <li className={styles.imageList}>
+                <div>
+                  {image.name} ({Math.round(image.size / 1024)} KB)
+                </div>
+                <button
+                  className={styles.removeButton}
+                  onClick={() => handleRemoveImage(image.id)}
+                >
+                  X
+                </button>
+              </li>
+            </ul>
+          ))}
+      </div>
+
+      {uploadedImages.length > 3 && (
+        <button
+          type="button"
+          className={styles.showAllButton}
+          onClick={toggleImageView}
+        >
+          {showAllImages ? "Show less" : "Show all images"}
+        </button>
+      )}
+
+      {status.isUploading && <p>Uploading...</p>}
     </>
   );
 };

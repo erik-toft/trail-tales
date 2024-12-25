@@ -10,13 +10,22 @@
 .mapContainer {
   animation: fadeIn 1s ease-in-out forwards;
   opacity: 0;
-  height: 100%;
+  height: 65vh;
   width: 100%;
+  z-index: 1;
 }
 
-@media (min-width: 768px) {
-  .mapContainer {
-    width: 50%;
-    margin-inline: auto;
-  }
+.mapContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none; /* Se till att den inte blockerar kartinteraktioner */
+  box-shadow: inset 10px 0 30px rgba(0, 0, 0, 0.2),
+    /* vänster */ inset -10px 0 30px rgba(0, 0, 0, 0.2),
+    /* höger */ inset 0 10px 30px rgba(0, 0, 0, 0.2),
+    /* ovan */ inset 0 -10px 30px rgba(0, 0, 0, 0.2); /* under */
+  z-index: 1000; /* Se till att skuggan hamnar över kartan men under eventuella interaktiva element */
 }

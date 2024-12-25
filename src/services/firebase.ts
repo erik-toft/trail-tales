@@ -1,4 +1,4 @@
-import { Image, Pin } from "@/types/Pin.types";
+import { Pin, Image } from "@/types/Pin.types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {

@@ -5,6 +5,9 @@
   padding: 1rem;
 }
 
+.container {
+  height: 70vh;
+}
 .formItem {
   margin-bottom: 1rem;
 }
@@ -19,16 +22,15 @@
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
 .form button {
   padding: 0.8rem;
   width: 100%;
-  border: none;
-  background-color: #007bff;
+  border: solid white 1px;
+  background-color: transparent;
   color: white;
-  border-radius: 4px;
+  margin-top: 1rem;
   font-size: 1rem;
   cursor: pointer;
 }

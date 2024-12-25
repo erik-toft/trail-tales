@@ -1,0 +1,80 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.controls button {
+  background-color: transparent;
+  border: none;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.controls {
+  position: absolute;
+  top: 1rem; /* Flytta till toppen av Swiper */
+  left: 50%;
+  display: flex;
+  gap: 10px; /* Mellanrum mellan knapparna */
+  z-index: 10; /* Gör att kontrollerna ligger ovanpå Swiper */
+}
+.modalContent {
+  background-color: #000000;
+  padding: 1.25rem;
+  width: 100%;
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1001;
+}
+
+.comment {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.625rem;
+  background-color: transparent;
+  right: 0.625rem;
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  color: #fff;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.startButton {
+  padding: 0.625rem 1.25rem;
+  /* font-size: 1rem; */
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  color: #fff;
+  cursor: pointer;
+  margin-block: 1.25rem;
+}
+
+.image-container {
+  display: flex;
+  gap: 0.625rem;
+  justify-content: center;
+}
+
+.image {
+  height: 25rem;
+  margin-inline: auto;
+  object-fit: cover;
+}

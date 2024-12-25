@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import styles from "./SearchField.module.css";
 
 interface SearchFieldProps {
   onPlaceSelected: (lat: number, lng: number) => void;
@@ -25,6 +26,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ onPlaceSelected }) => {
           const lng = place.geometry.location.lng();
 
           onPlaceSelected(lat, lng);
+
           setInputValue(place.name || "Unknown place");
         }
       });
@@ -45,7 +47,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ onPlaceSelected }) => {
         placeholder="Search for a city"
         value={inputValue}
         onChange={handleInputChange}
-        style={{ width: "300px", padding: "8px" }}
+        className={styles.search}
       />
     </div>
   );
