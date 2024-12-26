@@ -95,11 +95,7 @@ const PinForm: React.FC<PinFormProps> = ({
         <button type="submit" disabled={isUploading}>
           {isUploading ? "Saving..." : "Save Pin"}
         </button>
-        <button
-          type="button"
-          style={{ marginBottom: "5rem" }}
-          onClick={handleCancel}
-        >
+        <button type="button" onClick={handleCancel}>
           Cancel
         </button>
         {error && <p>{error}</p>}

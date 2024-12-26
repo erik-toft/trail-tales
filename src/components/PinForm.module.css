@@ -33,7 +33,6 @@
   flex-direction: column;
   gap: 1rem;
   z-index: 1001;
-  margin-bottom: 4rem;
 }
 
 /* Close button style inside modal */
