@@ -1,9 +1,8 @@
-.menu {
-}
-
 .addpin {
   background-color: transparent;
   border-radius: 0;
+  padding-inline: 0.74rem !important;
+  padding-block: 0.4rem !important;
 }
 
 .logout {
@@ -11,10 +10,6 @@
   text-decoration: none;
   padding-block: 0.4rem !important;
   padding-inline: 0.9rem !important;
-}
-
-.add {
-  margin-left: 0.5rem;
 }
 
 @keyframes pulse {
