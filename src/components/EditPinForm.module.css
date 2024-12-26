@@ -19,7 +19,8 @@
   width: 400px;
   color: #fff;
   position: relative;
-  max-height: 100vh;
+  height: auto;
+  max-height: 90vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
