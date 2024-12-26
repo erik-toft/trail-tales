@@ -53,7 +53,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 
             <div className="me-auto">
               <Link href="/logout" passHref>
-                <Button className={styles.logout} variant="outline-light ">
+                <Button className={`${styles.logout}`} variant="outline-light ">
                   Logout
                 </Button>
               </Link>

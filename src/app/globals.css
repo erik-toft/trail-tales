@@ -18,7 +18,7 @@ body {
 }
 .navbar-toggler:focus {
   box-shadow: none !important;
-  border: none !important;
+  border: 1px solid #f2a63b !important;
   border-radius: 0 !important;
 }
 

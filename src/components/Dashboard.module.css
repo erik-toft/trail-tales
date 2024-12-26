@@ -9,13 +9,8 @@
 .logout {
   border-radius: 0;
   text-decoration: none;
-
-  padding-block: 0.3rem;
-  padding-inline: 0.9rem;
-}
-
-.logout button {
-  border: none;
+  padding-block: 0.4rem !important;
+  padding-inline: 0.9rem !important;
 }
 
 .add {
@@ -38,4 +33,11 @@
   animation: pulse 1s ease-in-out infinite;
   color: black;
   background-color: #f0f0f0;
+}
+
+@media (max-width: 575px) {
+  .logout {
+    margin-top: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 }

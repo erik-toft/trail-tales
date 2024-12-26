@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import {
   MapContainer,
@@ -8,7 +6,7 @@ import {
   TileLayer,
   ZoomControl,
 } from "react-leaflet";
-import { LatLngExpression } from "leaflet";
+import { LatLngExpression, LeafletKeyboardEvent } from "leaflet";
 import styles from "@/components/Map.module.css";
 import Dashboard from "@/components/Dashboard";
 import AddPinHandler from "@/components/AddPinHandler";
@@ -67,8 +65,13 @@ const Map = ({ position, zoom }: MapProps) => {
   const handleMarkerClick = (pin: Pin) => {
     setSelectedPin(null);
     setPinFormOpen(false);
-
     setSelectedPin(pin);
+  };
+
+  const handleKeyDown = (e: LeafletKeyboardEvent, pin: Pin) => {
+    if (e.originalEvent.key === "Enter") {
+      handleMarkerClick(pin);
+    }
   };
 
   if (loading) {
@@ -120,6 +123,7 @@ const Map = ({ position, zoom }: MapProps) => {
               icon={customMarker}
               eventHandlers={{
                 click: () => handleMarkerClick(pin),
+                keydown: (e) => handleKeyDown(e, pin),
               }}
             >
               <Popup></Popup>
@@ -132,6 +136,7 @@ const Map = ({ position, zoom }: MapProps) => {
           maxZoom={19}
         />
       </MapContainer>
+
       {pinCoords && pinFormOpen && (
         <PinForm
           lat={pinCoords.lat}
@@ -140,6 +145,7 @@ const Map = ({ position, zoom }: MapProps) => {
           pinFormOpen={pinFormOpen}
         />
       )}
+
       {selectedPin && (
         <PinLibrary closeSidebar={closeSidebar} pin={selectedPin} />
       )}
