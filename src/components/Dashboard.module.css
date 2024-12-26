@@ -1,37 +1,17 @@
 .menu {
-  display: flex;
-  align-items: center; /* Vertikalt centrera elementen */
-  gap: 1rem;
-  padding: 1rem;
-  width: 100%;
-  box-sizing: border-box;
 }
 
-.menu button {
+.addpin {
   background-color: transparent;
-  border: 1px solid #909090;
-  padding-inline: 1rem;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0; /* Hindrar knappar från att krympa */
-}
-.logout button {
-  background-color: transparent;
-  border: 1px solid #909090;
-  margin-left: 1rem;
-
-  cursor: pointer;
-  white-space: wrap;
-}
-
-.menu button:hover {
-  background-color: #909090;
-  color: black;
+  border-radius: 0;
 }
 
 .logout {
-  align-items: center;
-  margin-right: 2rem; /* Se till att logout-knappen är vertikalt centrerad */
+  border-radius: 0;
+  text-decoration: none;
+
+  padding-block: 0.3rem;
+  padding-inline: 0.9rem;
 }
 
 .logout button {
@@ -40,14 +20,22 @@
 
 .add {
   margin-left: 0.5rem;
-  padding-block: 0.3rem;
 }
 
-/* Specifik styling för SearchField-komponenten */
-
-/* För mobilanpassning */
-@media (max-width: 768px) {
-  .menu {
-    gap: 0.5rem; /* Minska gapet mellan elementen för mobila enheter */
+@keyframes pulse {
+  0% {
+    opacity: 1;
   }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.pulse {
+  animation: pulse 1s ease-in-out infinite;
+  color: black;
+  background-color: #f0f0f0;
 }

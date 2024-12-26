@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "@/app/globals.css";
 import Footer from "@/components/Footer";
 import { AuthContextProvider } from "@/contexts/AuthContextProvider";
