@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { ClockLoader } from "react-spinners";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function HomePage() {
   const { currentUser } = useAuth();
