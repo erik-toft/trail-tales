@@ -116,7 +116,11 @@ const EditPinForm: React.FC<EditPinFormProps> = ({
         <button type="button" onClick={() => setEdit(false)}>
           Cancel
         </button>
-        <button type="button" onClick={() => handleDelete(pin._id)}>
+        <button
+          style={{ marginBottom: "10rem" }}
+          type="button"
+          onClick={() => handleDelete(pin._id)}
+        >
           Delete Pin
         </button>
         {updateError && <p>{updateError}</p>}
