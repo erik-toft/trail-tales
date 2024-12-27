@@ -7,8 +7,9 @@
 .icon {
   background-color: transparent;
   font-size: 1.1rem;
-  padding-inline: 0.8rem;
+  padding-inline: 0.6rem;
   border: none;
+  color: white;
 }
 .logout {
   border-radius: 0;

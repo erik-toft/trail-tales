@@ -58,9 +58,9 @@ const Dashboard: React.FC<DashboardProps> = ({
                 <SearchField onPlaceSelected={onPlaceSelected} />
               </div>
 
-              <div className="ms-auto">
+              <div className="ms-auto ">
                 <button
-                  className={styles.icon}
+                  className={`${styles.icon}`}
                   onClick={() => handleEditUserClick()}
                 >
                   <FaUser />

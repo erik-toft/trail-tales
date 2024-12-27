@@ -75,14 +75,14 @@ const PinForm: React.FC<PinFormProps> = ({
         <span style={{ textAlign: "center", marginTop: "2rem" }}>Pin Form</span>
         <label className={styles.titleLabel}>Title</label>
         <input
-          placeholder="malmö..."
+          placeholder="title..."
           type="text"
           {...register("title", { required: "Title is required" })}
         />
         {errors.title && <p>{errors.title.message}</p>}
         <div className={styles.yearContainer}>
           <label className={styles.yearLabel}>Year</label>
-          <input placeholder="1986..." type="number" {...register("year")} />
+          <input placeholder="year..." type="number" {...register("year")} />
         </div>
         {errors.title && <p>{errors.year?.message}</p>}
 
