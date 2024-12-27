@@ -7,6 +7,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/services/firebase";
 import { useRouter } from "next/navigation";
 import styles from "@/app/styles/Form.module.css";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 const RegisterPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -86,17 +88,16 @@ const RegisterPage = () => {
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Creating Account..." : "Register"}
         </button>
-        <p style={{ textAlign: "center", marginTop: "1.5rem" }}>
-          ----- OR -----
-        </p>
+
         <div
           style={{
-            textAlign: "center",
-            marginTop: "0.5rem",
-            border: "1px solid green",
+            textAlign: "start",
+            marginTop: "1rem",
           }}
         >
-          <a href="/login">Log In</a>
+          <Link href="/">
+            <FaArrowLeft />
+          </Link>
         </div>
       </form>
     </div>

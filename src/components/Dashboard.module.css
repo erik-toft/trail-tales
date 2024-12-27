@@ -4,7 +4,12 @@
   padding-inline: 0.74rem !important;
   padding-block: 0.4rem !important;
 }
-
+.icon {
+  background-color: transparent;
+  font-size: 1.1rem;
+  padding-inline: 0.8rem;
+  border: none;
+}
 .logout {
   border-radius: 0;
   text-decoration: none;

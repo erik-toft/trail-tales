@@ -1,0 +1,77 @@
+.modalOverlay {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: auto;
+}
+
+.modalContent {
+  pointer-events: auto;
+  background-color: #000000;
+  padding: 20px;
+  width: 400px;
+  height: 400px;
+  position: relative;
+  height: 100vh;
+  color: #fff;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 1001;
+}
+
+.modalContent input {
+  border-radius: 0;
+}
+.modalContent label {
+  margin-block: 1rem;
+}
+.modalContent input,
+.modalContent textarea {
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalContent textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.modalContent button {
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.625rem;
+  right: 1rem;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 998;
+}
+
+@media (min-width: 768px) {
+  .modalOverlay {
+    justify-content: end;
+  }
+}
