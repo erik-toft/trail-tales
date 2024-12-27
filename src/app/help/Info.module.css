@@ -1,0 +1,32 @@
+/* WelcomePage.module.css eller liknande */
+.container {
+  position: relative;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 1;
+  color: white;
+}
+
+.header,
+.message {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  color: white;
+}
+
+.header {
+  font-size: 1.8rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+/* Skapar en bakgrund som täcker hela skärmen bakom */
+.background {
+  position: fixed;
+
+  z-index: 0;
+}
