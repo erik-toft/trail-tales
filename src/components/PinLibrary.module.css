@@ -73,6 +73,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: white;
 }
 .commentInput {
   width: 100%;

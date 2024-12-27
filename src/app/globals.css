@@ -84,6 +84,14 @@ a {
 .swiper-container {
   position: relative;
 }
+.leaflet-container .leaflet-control-attribution {
+  background-color: black;
+
+  text-decoration: none;
+}
+.leaflet-control-attribution a {
+  color: white;
+}
 .spinner {
   height: 65vh;
   display: flex;

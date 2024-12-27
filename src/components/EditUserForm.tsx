@@ -90,8 +90,11 @@ const EditUserModal: React.FC<EditUserFormProps> = ({ setEdit }) => {
         <span style={{ textAlign: "center", marginTop: "2rem" }}>
           Edit Profile Form
         </span>
-        <label className={styles.formLabel}>Username</label>
+        <label className={styles.formLabel} htmlFor="username">
+          Username
+        </label>
         <input
+          id="username"
           type="text"
           placeholder={currentUser?.displayName || "Enter your username"}
           {...register("username")}
@@ -101,8 +104,11 @@ const EditUserModal: React.FC<EditUserFormProps> = ({ setEdit }) => {
           <p className={styles.errorText}>{errors.username.message}</p>
         )}
 
-        <label className={styles.formLabel}>Current Password</label>
+        <label className={styles.formLabel} htmlFor="currentPassword">
+          Current Password
+        </label>
         <input
+          id="currentPassword"
           type="password"
           placeholder="Current password"
           {...register("currentPassword")}
@@ -112,8 +118,11 @@ const EditUserModal: React.FC<EditUserFormProps> = ({ setEdit }) => {
           <p className={styles.errorText}>{errors.currentPassword.message}</p>
         )}
 
-        <label className={styles.formLabel}>New Password</label>
+        <label className={styles.formLabel} htmlFor="newPassword">
+          New Password
+        </label>
         <input
+          id="newPassword"
           type="password"
           placeholder="New password"
           {...register("newPassword", {

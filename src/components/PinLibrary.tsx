@@ -69,7 +69,7 @@ const PinLibrary: React.FC<PinLibraryProps> = ({ pin, closeSidebar }) => {
           <div className={styles.modalContent}>
             {!edit && (
               <>
-                <span style={{ textAlign: "start" }}>
+                <span style={{ textAlign: "center" }}>
                   {title} {year}
                 </span>
                 <button
@@ -90,6 +90,14 @@ const PinLibrary: React.FC<PinLibraryProps> = ({ pin, closeSidebar }) => {
                   >
                     Edit Pin
                   </button>
+                </div>
+                <div>
+                  <p style={{ marginBottom: "0", paddingBottom: "0" }}>
+                    Description
+                  </p>
+                </div>
+                <div>
+                  <p>{pin.description}</p>
                 </div>
                 {currentImages && currentImages.length > 0 ? (
                   currentImages.map((image: Image, index: number) => (

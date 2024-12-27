@@ -11,6 +11,11 @@
   border: none;
   color: white;
 }
+.editUser {
+  top: -41px;
+  margin-left: 7rem;
+  position: absolute;
+}
 .logout {
   border-radius: 0;
   text-decoration: none;

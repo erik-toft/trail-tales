@@ -75,6 +75,7 @@ const PinForm: React.FC<PinFormProps> = ({
         <span style={{ textAlign: "center", marginTop: "2rem" }}>Pin Form</span>
         <label className={styles.titleLabel}>Title</label>
         <input
+          id="title"
           placeholder="title..."
           type="text"
           {...register("title", { required: "Title is required" })}
@@ -82,12 +83,21 @@ const PinForm: React.FC<PinFormProps> = ({
         {errors.title && <p>{errors.title.message}</p>}
         <div className={styles.yearContainer}>
           <label className={styles.yearLabel}>Year</label>
-          <input placeholder="year..." type="number" {...register("year")} />
+          <input
+            id="year"
+            placeholder="year..."
+            type="number"
+            {...register("year")}
+          />
         </div>
         {errors.title && <p>{errors.year?.message}</p>}
 
         <label className={styles.descriptionLabel}>Description</label>
-        <textarea placeholder="description..." {...register("description")} />
+        <textarea
+          id="description"
+          placeholder="description..."
+          {...register("description")}
+        />
         {errors.description && <p>{errors.description.message}</p>}
 
         <UploadImage onImageUpload={handleImageUpload} />

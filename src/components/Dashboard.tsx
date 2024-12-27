@@ -57,24 +57,23 @@ const Dashboard: React.FC<DashboardProps> = ({
                 </Button>
                 <SearchField onPlaceSelected={onPlaceSelected} />
               </div>
-
-              <div className="ms-auto ">
-                <button
-                  className={`${styles.icon}`}
-                  onClick={() => handleEditUserClick()}
-                >
-                  <FaUser />
-                  {currentUser.displayName && (
-                    <div>
-                      <span>{currentUser.displayName}</span>
-                    </div>
-                  )}
-                </button>
-              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <div className={styles.editUser}>
+        <button
+          className={`${styles.icon}`}
+          onClick={() => handleEditUserClick()}
+        >
+          <FaUser />
+          {currentUser.displayName && (
+            <span style={{ marginLeft: "0.5rem" }}>
+              {currentUser.displayName}
+            </span>
+          )}
+        </button>
+      </div>
       {isEditUserOpen && <EditUserForm setEdit={setIsEditUserOpen} />}
     </>
   );

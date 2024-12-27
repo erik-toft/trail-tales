@@ -83,25 +83,32 @@ const EditPinForm: React.FC<EditPinFormProps> = ({
         </span>
         <label className={styles.titleLabel}>Title</label>
         <input
+          id="pinTitle"
           type="text"
           {...register("title", { required: "Title is required" })}
         />
         {errors.title && <p>{errors.title.message}</p>}
         <div className={styles.yearContainer}>
           <label className={styles.yearLabel}>Year</label>
-          <input placeholder="1986..." type="number" {...register("year")} />
+          <input
+            id="pinYear"
+            placeholder="1986..."
+            type="number"
+            {...register("year")}
+          />
         </div>
         {errors.title && <p>{errors.year?.message}</p>}
 
         <label className={styles.positionLabel}>Pin Position</label>
         <div className={styles.positionContainer}>
           <label className={styles.latLabel}>Lat</label>
-          <input type="number" step="any" {...register("lat")} />
+          <input id="pinLat" type="number" step="any" {...register("lat")} />
           <label className={styles.lngLabel}>Lng</label>
-          <input type="number" step="any" {...register("lng")} />
+          <input id="pinLng" type="number" step="any" {...register("lng")} />
         </div>
         <label className={styles.descriptionLabel}>Description</label>
         <textarea
+          id="pinDescription"
           {...register("description", {
             required: "Description is required",
           })}
