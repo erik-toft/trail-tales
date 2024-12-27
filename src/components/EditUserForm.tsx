@@ -41,16 +41,14 @@ const EditUserModal: React.FC<EditUserFormProps> = ({ setEdit }) => {
     const auth = getAuth();
 
     try {
-      // If username is provided, update it
-      if (data.username) {
-        await updateProfile(auth.currentUser!, {
+      if (data.username && auth.currentUser) {
+        await updateProfile(auth.currentUser, {
           displayName: data.username,
         });
         alert("Username updated!");
         setEdit(false);
       }
 
-      // If newPassword is provided, handle password update
       if (data.newPassword) {
         if (!data.currentPassword) {
           setError("Current password is required to update password.");
@@ -58,16 +56,16 @@ const EditUserModal: React.FC<EditUserFormProps> = ({ setEdit }) => {
           return;
         }
 
-        const credential = EmailAuthProvider.credential(
-          currentUser?.email!,
-          data.currentPassword
-        );
-
-        // Reauthenticate the user
-        await reauthenticateWithCredential(auth.currentUser!, credential);
-
-        // Update the password
-        await updatePassword(auth.currentUser!, data.newPassword);
+        if (currentUser && currentUser.email) {
+          const credential = EmailAuthProvider.credential(
+            currentUser?.email,
+            data.currentPassword
+          );
+          if (auth.currentUser) {
+            await reauthenticateWithCredential(auth.currentUser, credential);
+            await updatePassword(auth.currentUser, data.newPassword);
+          }
+        }
 
         alert("Password updated!");
         setEdit(false);
