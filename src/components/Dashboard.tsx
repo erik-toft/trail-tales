@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import styles from "@/components/Dashboard.module.css";
-import Link from "next/link";
 import SearchField from "./SearchField";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
